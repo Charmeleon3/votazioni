@@ -3,9 +3,6 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import json
 
-
-
-
 # Autenticazione con Google Sheets
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 creds_info = json.loads(st.secrets["GCP_CREDENTIALS_JSON"])
@@ -16,7 +13,11 @@ sheet = client.open("votazioni").sheet1
 # Titolo dell'app
 st.title("Votazione Anonima")
 
-st.write("Vota su questi tre parametri da 1 a 10:")
+st.write("Inserisci i seguenti dati per votare:")
+
+# Nuovi campi testuali
+nome = st.text_input("Nome")
+personaggio = st.text_input("Personaggio")
 
 # Input voti
 memicita = st.slider("Memicità", 1, 10)
@@ -25,10 +26,13 @@ evoluzione = st.slider("Evoluzione", 1, 10)
 
 # Bottone per inviare il voto
 if st.button("Invia voto"):
-    # Aggiungi i voti al foglio di calcolo
-    data = [memicita, impatto, evoluzione]
-    sheet.append_row(data)
-    st.success("Voto inviato con successo!")
+    if nome.strip() == "" or personaggio.strip() == "":
+        st.warning("Per favore, compila anche Nome e Personaggio.")
+    else:
+        # Aggiungi i voti al foglio di calcolo
+        data = [nome, personaggio, memicita, impatto, evoluzione]
+        sheet.append_row(data)
+        st.success("Voto inviato con successo!")
 
 # Mostra il numero di voti raccolti
 num_voti = len(sheet.get_all_records())
