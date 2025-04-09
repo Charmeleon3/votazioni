@@ -16,7 +16,7 @@ st.title("Votazione Anonima")
 st.write("Inserisci i seguenti dati per votare:")
 
 # Nuovi campi testuali
-nome = st.text_input("Nome")
+nome_votante = st.text_input("Nome Votante")
 personaggio = st.text_input("Personaggio")
 
 # Input voti
@@ -26,11 +26,11 @@ evoluzione = st.slider("Evoluzione", 1, 10)
 
 # Bottone per inviare il voto
 if st.button("Invia voto"):
-    if nome.strip() == "" or personaggio.strip() == "":
-        st.warning("Per favore, compila anche Nome e Personaggio.")
+    if nome_votante.strip() == "" or personaggio.strip() == "":
+        st.warning("Per favore, compila anche Nome Votante e Personaggio.")
     else:
         # Aggiungi i voti al foglio di calcolo
-        data = [nome, personaggio, memicita, impatto, evoluzione]
+        data = [nome_votante, personaggio, memicita, impatto, evoluzione]
         sheet.append_row(data)
         st.success("Voto inviato con successo!")
 
