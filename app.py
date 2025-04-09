@@ -1,10 +1,15 @@
 import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import json
+
+
+
 
 # Autenticazione con Google Sheets
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("C:\\Users\\LucarioNervi\\Desktop\\progetto2 API\\credentials.json", scope)
+creds_info = json.loads(st.secrets["GCP_CREDENTIALS_JSON"])
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_info, scope)
 client = gspread.authorize(creds)
 sheet = client.open("votazioni").sheet1
 
