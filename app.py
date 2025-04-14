@@ -68,7 +68,7 @@ with st.expander("📊 Visualizza Classifica"):
         #    if all(cell != '#DIV/0!' and cell != '' for cell in row)
         #]
 
-        df = pd.DataFrame(clean_rows, columns=headers)
+        df = pd.DataFrame(rows, columns=headers)
 
         # Converti colonne numeriche per sorting
         for col in ['Media Memabilita', 'Media Impatto', 'Media Evoluzione', 'Punteggio Tot', 'Rank']:
