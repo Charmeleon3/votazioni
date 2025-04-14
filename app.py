@@ -63,10 +63,7 @@ with st.expander("📊 Visualizza Classifica"):
         rows = classifica_data[1:]
 
         # Pulisci i dati: rimuovi righe con errori tipo #DIV/0!
-        clean_rows = [
-            row for row in rows
-            if any(cell not in ('', '#DIV/0!') for cell in row[1:])  # salta la colonna "Nome"
-        ]
+        
 
         df = pd.DataFrame(clean_rows, columns=headers)
 
