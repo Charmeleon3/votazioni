@@ -36,8 +36,13 @@ if st.button("Invia voto"):
         st.success("Voto inviato con successo!")
 
 # Mostra il numero di voti raccolti
-num_voti = len(sheet.get_all_records())
-st.write(f"Numero di voti ricevuti finora: {num_voti}")
+try:
+    records = sheet.get_all_records()
+    num_voti = len(records)
+    st.write(f"Numero di voti ricevuti finora: {num_voti}")
+except Exception as e:
+    st.warning("⚠️ Impossibile recuperare il numero di voti. Controlla che il foglio non contenga celle con errori.")
+
 
 
 
