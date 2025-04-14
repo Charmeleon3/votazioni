@@ -63,12 +63,12 @@ with st.expander("📊 Visualizza Classifica"):
         rows = classifica_data[1:]
 
         # Pulisci i dati: rimuovi righe con errori tipo #DIV/0!
-        #clean_rows = [
-        #   row for row in rows
-        #    if all(cell != '#DIV/0!' and cell != '' for cell in row)
-        #]
+        clean_rows = [
+           row for row in rows
+            if all(cell != '#DIV/0!' and cell != '' for cell in row)
+        ]
 
-        df = pd.DataFrame(rows, columns=headers)
+        df = pd.DataFrame(clean_rows, columns=headers)
 
         # Converti colonne numeriche per sorting
         for col in ['Media Memabilita', 'Media Impatto', 'Media Evoluzione', 'Punteggio Tot', 'Rank']:
