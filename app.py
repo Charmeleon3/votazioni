@@ -71,10 +71,10 @@ with st.expander("📊 Visualizza Classifica"):
         df = pd.DataFrame(clean_rows, columns=headers)
 
         # Converti colonne numeriche per sorting
-        for col in ['Media Memabilita', 'Media Impatto', 'Media Evoluzione', 'Punteggio Totale']:
+        for col in ['Media Memabilita', 'Media Impatto', 'Media Evoluzione', 'Punteggio Tot', 'Rank']:
             df[col] = pd.to_numeric(df[col], errors='coerce')
 
-        df = df.sort_values(by='Punteggio Totale', ascending=False).reset_index(drop=True)
+        df = df.sort_values(by='Punteggio Tot', ascending=False).reset_index(drop=True)
 
         # Mostra tabella
         st.dataframe(df)
